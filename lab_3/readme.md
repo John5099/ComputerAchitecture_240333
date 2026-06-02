@@ -50,35 +50,35 @@ A **2-to-4 decoder** has a 2-bit input (A1, A0) and four outputs (Y0–Y3). At a
 ## Output
 
 ### Encoder Output
-(<img width="1065" height="206" alt="encoder" src="https://github.com/user-attachments/assets/26c5b455-83aa-465a-b9b1-59879d450e2d" />
-)
+<img width="1065" height="206" alt="encoder" src="https://github.com/user-attachments/assets/26c5b455-83aa-465a-b9b1-59879d450e2d" />
+
 
 ### Decoder Output
-(<img width="1003" height="259" alt="decoder" src="https://github.com/user-attachments/assets/b5c077e9-dfae-43c4-9a02-c812c93acccc" />
+<img width="1003" height="259" alt="decoder" src="https://github.com/user-attachments/assets/b5c077e9-dfae-43c4-9a02-c812c93acccc" />
 
-)
+
 
 ---
 
 ## Discussion
 
-In this experiment, two combinational circuits were implemented using VHDL: a **priority encoder** and a **decoder**.
+In this experiment, two combinational logic circuits, namely a **priority encoder** and a **decoder**, were designed and simulated using VHDL.
 
-The priority encoder demonstrates how multiple inputs are resolved by prioritizing the highest active input, producing a valid binary output. The decoder converts binary input values into a single active output line.
+The priority encoder was able to identify the highest-priority active input and generate the corresponding binary output. The decoder successfully translated binary input data into the appropriate output line by activating only one output at a time.
 
-Simulation results verified correct functionality:
-- Encoder correctly handled input priority.
-- Decoder correctly activated only one output per input combination.
+The simulation outputs confirmed that both circuits operated as expected:
+- The priority encoder correctly selected the highest active input when multiple inputs were present.
+- The decoder produced the correct output for each binary input combination by enabling only the corresponding output line.
 
 ---
 
 ## Conclusion
 
-This lab helped in understanding the design and implementation of **combinational logic circuits using VHDL**.
+This experiment provided practical knowledge of designing and implementing **combinational logic circuits using VHDL**.
 
-We successfully:
-- Designed a **4-to-2 priority encoder**
-- Designed a **2-to-4 decoder**
-- Verified outputs using simulation tools (GTKWave)
+The following objectives were successfully achieved:
+- Implementation of a **4-to-2 priority encoder**
+- Implementation of a **2-to-4 decoder**
+- Verification of circuit operation through simulation using **GTKWave**
 
-The experiment confirmed correct behavior of both circuits and strengthened the fundamentals of digital logic design.
+The simulation results matched the expected outputs, confirming the correct functioning of both circuits. The experiment also improved understanding of combinational circuit design and VHDL programming concepts.
