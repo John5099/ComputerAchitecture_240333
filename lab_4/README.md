@@ -71,12 +71,12 @@ The waveform verifies correct routing of input D to one of the four outputs base
 
 ## Discussion
 
-The VHDL implementation of both the 4-to-1 Multiplexer and 1-to-4 Demultiplexer was successfully verified using GHDL and GTKWave. The observed waveforms match the theoretical truth tables, confirming correct combinational behavior.
+The VHDL designs for the **4-to-1 Multiplexer** and **1-to-4 Demultiplexer** were successfully simulated and tested using **GHDL** and **GTKWave**. The simulation results were consistent with the expected truth tables, demonstrating the correct operation of both combinational circuits.
 
-The use of behavioral modeling with `case` statements ensured a simple and efficient design approach.
+The circuits were implemented using **behavioral modeling** with `case` statements, which provided a clear, concise, and efficient method for describing their functionality. The generated waveforms confirmed that the outputs responded correctly to changes in the input and selection signals.
 
 ---
 
 ## Conclusion
 
-Both circuits were successfully designed and simulated using VHDL. The results confirm correct functionality of multiplexing and demultiplexing operations, reinforcing the understanding of combinational logic design using hardware description language.
+Both circuits were successfully implemented and simulated using VHDL. The simulation results verified the correct operation of the multiplexer and demultiplexer. This experiment enhanced the understanding of combinational logic circuit design and demonstrated the use of VHDL for modeling and verifying digital systems.
