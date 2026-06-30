@@ -1,10 +1,6 @@
 # Lab 5: VHDL Code for Combinational Circuits: Comparator
 
-## Overview
 
-This repository contains the VHDL implementation, testbench, and simulation results for a **2-bit magnitude comparator**. The project demonstrates how fundamental comparison operations are translated from theoretical Boolean logic into synthesizable hardware description language (HDL) code.
-
----
 
 ## Objectives
 
