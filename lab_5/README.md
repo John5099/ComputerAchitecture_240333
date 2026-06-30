@@ -74,7 +74,7 @@ In this lab, we successfully modeled a 2-bit comparator in VHDL. The exercise hi
 
 ---
 
-## Conclusion & Real-World Applications
+## Conclusion 
 
 This experiment reinforced the foundational role of **combinational logic** in digital systems. By designing and verifying a magnitude comparator, we gained practical experience in VHDL coding, testbench creation, and waveform analysis.
 
