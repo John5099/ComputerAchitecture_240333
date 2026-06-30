@@ -53,7 +53,7 @@ In VHDL, the comparator is implemented using the **Behavioral** modeling style w
 
 
 
-![Output of comparator](Output.png)
+![Output of comparator](image.png)
 _Figure 1: Simulation waveform demonstrating the comparator's response to varying 2-bit inputs._
 
 **Key Observations from Waveforms:**
