@@ -19,120 +19,39 @@ The primary goals of this laboratory exercise are to:
 
 ## Theory
 
-A magnitude comparator is a combinational logic circuit that compares two binary numbers, $A$ and $B$, and determines their relative magnitude. For a 2-bit comparator, the inputs are $A = A_1A_0$ and $B = B_1B_0$.
+A magnitude comparator is a combinational circuit that compares two binary numbers and determines their relationship. For two 2-bit inputs **A = A1A0** and **B = B1B0**, the comparator produces three mutually exclusive output signals:
 
-The circuit yields three mutually exclusive outputs:
+| Output | Condition | Description |
+|--------|-----------|-------------|
+| **EQ** | A = B | HIGH when both inputs are equal |
+| **GT** | A > B | HIGH when A is greater than B |
+| **LT** | A < B | HIGH when A is less than B |
 
-- **EQ (Equal):** Asserted HIGH when $A = B$
-- **GT (Greater Than):** Asserted HIGH when $A > B$
-- **LT (Less Than):** Asserted HIGH when $A < B$
+The Boolean expressions for each output are:
 
-### Boolean Logic Equations
+```
+EQ = (A1 ⊕ B1)' · (A0 ⊕ B0)'
+GT = A1·B1' + (A1 ⊕ B1)' · A0·B0'
+LT = A1'·B1 + (A1 ⊕ B1)' · A0'·B0
+```
 
-_(Note: $\odot$ represents the XNOR operation)_
+In VHDL, the comparator is implemented using the **Behavioral** modeling style with a `process` block and `if-elsif-else` statements. The `NUMERIC_STD` library is used to cast `std_logic_vector` inputs to `unsigned` type, enabling direct arithmetic comparison using standard relational operators (`=`, `>`, `<`).
 
-1. **Equality (EQ):** Both bits must be equal.
-   $$EQ = (A_1 \odot B_1) \cdot (A_0 \odot B_0)$$
+### Expected Truth Table
 
-2. **Greater Than (GT):** The most significant bit (MSB) of A is greater, OR the MSBs are equal and the least significant bit (LSB) of A is greater.
-   $$GT = A_1\overline{B_1} + (A_1 \odot B_1)A_0\overline{B_0}$$
-
-3. **Less Than (LT):** The MSB of A is less, OR the MSBs are equal and the LSB of A is less.
-   $$LT = \overline{A_1}B_1 + (A_1 \odot B_1)\overline{A_0}B_0$$
-
-### Truth Table
-
-| $A_1$ | $A_0$ | $B_1$ | $B_0$ | **EQ** | **GT** | **LT** |
-| :---: | :---: | :---: | :---: | :----: | :----: | :----: |
-|   0   |   0   |   0   |   0   | **1**  |   0    |   0    |
-|   0   |   0   |   0   |   1   |   0    |   0    | **1**  |
-|   0   |   1   |   0   |   0   |   0    | **1**  |   0    |
-|   0   |   1   |   0   |   1   | **1**  |   0    |   0    |
-|   0   |   1   |   1   |   0   |   0    |   0    | **1**  |
-|   0   |   1   |   1   |   1   |   0    |   0    | **1**  |
-|   1   |   0   |   0   |   0   |   0    | **1**  |   0    |
-|   1   |   0   |   0   |   1   |   0    | **1**  |   0    |
-|   1   |   0   |   1   |   0   | **1**  |   0    |   0    |
-|   1   |   0   |   1   |   1   |   0    |   0    | **1**  |
-|   1   |   1   |   0   |   0   |   0    | **1**  |   0    |
-|   1   |   1   |   0   |   1   |   0    | **1**  |   0    |
-|   1   |   1   |   1   |   0   |   0    | **1**  |   0    |
-|   1   |   1   |   1   |   1   | **1**  |   0    |   0    |
+| A  | B  | EQ | GT | LT |
+|----|----|----|----|----|
+| 00 | 00 |  1 |  0 |  0 |
+| 01 | 00 |  0 |  1 |  0 |
+| 00 | 01 |  0 |  0 |  1 |
+| 10 | 11 |  0 |  0 |  1 |
+| 11 | 10 |  0 |  1 |  0 |
+| 11 | 11 |  1 |  0 |  0 |
 
 ---
 
-## VHDL Source Code
 
-### 1. Main Design Entity (`COMPARATOR_2BIT`)
 
-This is the core behavioral model of the 2-bit comparator. It utilizes the `NUMERIC_STD` library to perform unsigned integer comparisons on the input vectors.
-
-```vhdl
-library IEEE;
-use IEEE.STD_LOGIC_1164.ALL;
-use IEEE.NUMERIC_STD.ALL;
-
-entity COMPARATOR_2BIT is
-    port(
-        A: in std_logic_vector(1 downto 0);
-        B: in std_logic_vector(1 downto 0);
-        EQ: out std_logic;
-        GT: out std_logic;
-        LT: out std_logic
-    );
-end entity COMPARATOR_2BIT;
-
-architecture Behavioral of COMPARATOR_2BIT is
-begin
-    process(A,B)
-    begin
-        if unsigned(A) = unsigned(B) then
-            EQ <= '1'; GT <= '0'; LT <= '0';
-        elsif unsigned(A) > unsigned(B) then
-            EQ <= '0'; GT <= '1'; LT <= '0';
-        else
-            EQ <= '0'; GT <= '0'; LT <= '1';
-        end if;
-    end process;
-end architecture Behavioral;
-```
-
-### 2. Testbench (`COMPARATOR_TB`)
-
-The testbench instantiates the Unit Under Test (UUT) and applies a stimulus process to verify all three output conditions (Equal, Greater Than, Less Than).
-
-```vhdl
-library IEEE;
-use IEEE.STD_LOGIC_1164.ALL;
-
-entity COMPARATOR_TB is
-end entity COMPARATOR_TB;
-
-architecture Simulation of COMPARATOR_TB is
-    signal A, B : std_logic_vector(1 downto 0) := "00";
-    signal EQ, GT, LT: std_logic;
-begin
-    -- Instantiate the Unit Under Test (UUT)
-    DUT: entity work.COMPARATOR_2BIT
-    port map(A => A, B => B, EQ => EQ, GT => GT, LT => LT);
-
-    -- Stimulus process
-    STIMULUS: process
-    begin
-        A <= "00"; B <= "00"; wait for 10 ns ; -- EQ = 1
-        A <= "01"; B <= "00"; wait for 10 ns ; -- GT = 1
-        A <= "00"; B <= "01"; wait for 10 ns ; -- LT = 1
-        A <= "10"; B <= "11"; wait for 10 ns ; -- LT = 1
-        A <= "11"; B <= "10"; wait for 10 ns ; -- GT = 1
-        A <= "11"; B <= "11"; wait for 10 ns ; -- EQ = 1
-        wait;
-    end process;
-end architecture Simulation;
-```
-
----
-
-## Simulation Results
 
 ![Output of comparator](Output.png)
 _Figure 1: Simulation waveform demonstrating the comparator's response to varying 2-bit inputs._
