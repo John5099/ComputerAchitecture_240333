@@ -78,18 +78,4 @@ In this lab, we successfully modeled a 2-bit comparator in VHDL. The exercise hi
 
 This experiment reinforced the foundational role of **combinational logic** in digital systems. By designing and verifying a magnitude comparator, we gained practical experience in VHDL coding, testbench creation, and waveform analysis.
 
-**Real-World Relevance:**
-Comparators are not just theoretical exercises; they are fundamental building blocks in modern computing. They are heavily utilized in:
 
-- **Arithmetic Logic Units (ALUs):** To evaluate conditional branches (e.g., `if A > B` in assembly language).
-- **Memory Controllers:** For address decoding and boundary checking.
-- **Sorting Hardware:** To determine the relative order of data packets in high-speed network routers.
-
----
-
-## How to Simulate
-
-1. Open your preferred VHDL simulator (e.g., ModelSim, Vivado, Quartus, or GHDL).
-2. Compile the `comparator_2bit.vhd` design file.
-3. Compile the `comparator_tb.vhd` testbench file.
-4. Run the simulation and observe the waveform to verify the 6 targeted input states.
