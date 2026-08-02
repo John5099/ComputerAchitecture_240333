@@ -72,8 +72,3 @@ The Booth Algorithm provides an efficient method for multiplying signed binary n
 
 ---
 
-## Author
-
-**Name:** *Your Name*  
-**Course:** Computer Engineering  
-**Lab:** Computer Architecture Laboratory
