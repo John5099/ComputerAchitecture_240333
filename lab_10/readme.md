@@ -88,7 +88,7 @@ non_restoring_div.py
 
 ## Sample Output
 
-![GTKWave Simulation Output](image.png)
+![GTKWave Simulation Output](output.png)
 ---
 
 ## Conclusion
